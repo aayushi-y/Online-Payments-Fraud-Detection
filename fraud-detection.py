@@ -7,14 +7,14 @@ from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 
 data = pd.read_csv("./datasets/log.csv")
-#print(data.head(3))
+print(data.head(3))
 
 #checking if data has nay null values 
-#print(data.isnull().sum())
+print(data.isnull().sum())
 #It does not have any null values 
 
 #looking for the different type of transactions in Type column 
-#print(data.type.value_counts())
+print(data.type.value_counts())
 #creating a pie/dougnut chart 
 
 type = data.type.value_counts()
@@ -24,11 +24,11 @@ quantity = type.values
 fig, ax = plt.subplots()
 ax.pie(quantity, labels = transactions, autopct = '%1.1f%%')
 plt.title("Distribution of Transaction Type")
-#plt.show()
+plt.show()
 
 #Looking for correlation between fatures of data with isFraud column 
 correlation = data.corr(numeric_only = True)
-#print(correlation["isFraud"].sort_values())
+print(correlation["isFraud"].sort_values())
 
 #converting the categorical data into numerical so that it can used to train a model 
 data["type"] = data["type"].map({
@@ -38,7 +38,7 @@ data["type"] = data["type"].map({
 data["isFraud"] = data["isFraud"].map({
     0: "No Fraud" , 1: "Fraud"
 })
-#print(data.head(3))
+print(data.head(3))
 
 #splitting the dataset into two parts : train and test sets 
 x = data[["type", "amount", "oldbalanceOrg", "newbalanceOrig"]]
